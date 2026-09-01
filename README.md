@@ -35,6 +35,8 @@ git config --global user.email "your.email@something.com"
 ```bash
 git config --global core.editor nano
 ```
+> [!WARNING]
+> If you don't change your editor, you'll be thrown into Vim whenever you commit without a specified message. Vim is stronger than you. Vim will break you.
 
 
 ## Exercise 1: Commit
@@ -71,11 +73,11 @@ git log --all --decorate --oneline --graph
 > ```
 
 
-## Exercise 2: Checkout
+## Exercise 2: Switch
 
 1. Checkout to the previous commit.
 ```bash
-git checkout HEAD~
+git switch --detached HEAD~
 ```
 2. Git will tell you that your are now in _detached HEAD_ state, meaning that you are no longer attached to a branch. Look at the content of `file_1.md`. What do you see?
 3. Check your current position in the tree of commits, indicated by `(HEAD)`.
@@ -84,7 +86,7 @@ git log --all --decorate --oneline --graph
 ```
 4. To go back to the `main` branch, do:
 ```bash
-git checkout main
+git switch main
 ```
 5. Look at the content of `file_1.md` again. What do you see?
 6. You can also checkout to a specific commit by using its hash. Look at the tree of commits (`git log`) and checkout to a previous commit.
@@ -102,7 +104,7 @@ git branch
 ```
 3. Switch to the new branch.
 ```bash
-git checkout new-branch
+git switch new-branch
 ```
 4. Make a change in `file_2.md`.
 5. Commit your changes.
@@ -112,10 +114,11 @@ git log --all --decorate --oneline --graph
 ```
 
 > [!TIP]
-> The `git branch new-branch` and `git checkout new-branch` commands can be combined into a single command:
+> The `git branch new-branch` and `git switch new-branch` commands can be combined into a single command:
 > ```bash
-> git checkout -b new-branch
+> git switch -c new-branch
 > ```
+> `-c` is the shorthand for `--create`.
 
 _Bonus step: Try to push `new-branch` to the remote repository (`origin`). Note that `new-branch` does not exist on the remote repository yet._
 
